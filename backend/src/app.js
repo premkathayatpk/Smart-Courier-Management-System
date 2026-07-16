@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import authRouter from "./routes/auth.routes.js";
+import userRouter from "./routes/user.routes.js";
 
 const app = express();
 
@@ -18,13 +19,9 @@ app.use(
   }),
 );
 
-//APIs
-// app.get("/", (req, res) => {
-//   res.json({
-//     message: "Courier API Running",
-//   });
-// });
 
 app.use('/api/auth',authRouter)
+app.use('/api/users',userRouter)
+
 
 export default app;

@@ -94,6 +94,7 @@ const userSchema = new mongoose.Schema(
 
       updatedAt: {
         type: Date,
+        default: null,
       },
     },
 
@@ -106,11 +107,15 @@ const userSchema = new mongoose.Schema(
     // Driver vehicle
     vehicleType: {
       type: String,
-      enum: ["Bike", "Scooter", "Car", "Van", ""],
-      default: "",
+      enum: ["Bike", "Scooter", "Car", "Van", "Truck"],
+      default: "Bike",
     },
 
     vehicleNumber: {
+      type: String,
+      default: "",
+    },
+    licenseNumber: {
       type: String,
       default: "",
     },

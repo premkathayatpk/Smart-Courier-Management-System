@@ -53,6 +53,8 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+
+    // Address
     address: {
       type: String,
       default: "",
@@ -78,6 +80,42 @@ const userSchema = new mongoose.Schema(
       default: "",
     },
 
+    // Driver live location
+    currentLocation: {
+      latitude: {
+        type: Number,
+        default: null,
+      },
+
+      longitude: {
+        type: Number,
+        default: null,
+      },
+
+      updatedAt: {
+        type: Date,
+      },
+    },
+
+    // Driver availability
+    isAvailable: {
+      type: Boolean,
+      default: false,
+    },
+
+    // Driver vehicle
+    vehicleType: {
+      type: String,
+      enum: ["Bike", "Scooter", "Car", "Van", ""],
+      default: "",
+    },
+
+    vehicleNumber: {
+      type: String,
+      default: "",
+    },
+
+    // Authentication
     lastLogin: {
       type: Date,
     },
@@ -86,6 +124,9 @@ const userSchema = new mongoose.Schema(
     timestamps: true,
   },
 );
+
+userSchema.index({ role: 1 });
+userSchema.index({ isAvailable: 1 });
 
 const User = mongoose.model("User", userSchema);
 

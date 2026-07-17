@@ -119,18 +119,33 @@ const parcelSchema = new mongoose.Schema(
       default: "Pending",
     },
 
-    status: {
-      type: String,
-      enum: [
-        "Pending",
-        "Assigned",
-        "Picked Up",
-        "In Transit",
-        "Delivered",
-        "Cancelled",
-      ],
-      default: "Pending",
-    },
+    statusHistory: [
+      {
+        status: {
+          type: String,
+          enum: [
+            "Pending",
+            "Assigned",
+            "Picked Up",
+            "In Transit",
+            "Delivered",
+            "Cancelled",
+          ],
+        },
+        updatedBy: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+        },
+        timestamp: {
+          type: Date,
+          default: Date.now,
+        },
+        note: {
+          type: String,
+          default: "",
+        },
+      },
+    ],
 
     estimatedDistance: {
       type: Number,
@@ -158,6 +173,34 @@ const parcelSchema = new mongoose.Schema(
       type: String,
       default: "",
       trim: true,
+    },
+    pickedUpAt: {
+      type: Date,
+    },
+
+    deliveredAt: {
+      type: Date,
+    },
+
+    deliveryOTP: {
+      type: String,
+      default: null,
+    },
+    currentLocation: {
+      latitude: {
+        type: Number,
+        default: null,
+      },
+
+      longitude: {
+        type: Number,
+        default: null,
+      },
+
+      updatedAt: {
+        type: Date,
+        default: null,
+      },
     },
   },
   {

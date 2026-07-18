@@ -7,6 +7,7 @@ import userRouter from "./routes/user.routes.js";
 import parcelRouter from "./routes/parcel.routes.js";
 import driverRouter from "./routes/driver.routes.js";
 import adminRouter from "./routes/admin.routes.js";
+import analyticsRouter from "./routes/analytics.routes.js";
 
 const app = express();
 
@@ -27,5 +28,6 @@ app.use("/api/user", userRouter);
 app.use("/api/parcel", parcelRouter);
 app.use("/api/driver", driverRouter);
 app.use("/api/admin", adminRouter);
+app.use("/api/analytics", analyticsRouter);
 
 export default app;

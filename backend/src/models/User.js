@@ -107,8 +107,8 @@ const userSchema = new mongoose.Schema(
     // Driver vehicle
     vehicleType: {
       type: String,
-      enum: ["Bike", "Scooter", "Car", "Van", "Truck"],
-      default: "Bike",
+      enum: ["Bike", "Scooter", "Car", "Van", "Truck", ""],
+      default: "",
     },
 
     vehicleNumber: {

@@ -118,7 +118,18 @@ const parcelSchema = new mongoose.Schema(
       enum: ["Pending", "Paid"],
       default: "Pending",
     },
-
+    status: {
+      type: String,
+      enum: [
+        "Pending",
+        "Assigned",
+        "Picked Up",
+        "In Transit",
+        "Delivered",
+        "Cancelled",
+      ],
+      default: "Pending",
+    },
     statusHistory: [
       {
         status: {
@@ -184,7 +195,7 @@ const parcelSchema = new mongoose.Schema(
 
     deliveryOTP: {
       type: String,
-      default: null,
+      default: "",
     },
     currentLocation: {
       latitude: {

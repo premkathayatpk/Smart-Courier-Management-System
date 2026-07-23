@@ -5,6 +5,7 @@ import {
   getAllParcels,
   getAssignedParcels,
   getMyParcels,
+  getParcelById,
   trackParcel,
   updateParcelStatus,
 } from "../controllers/parcel.controller.js";
@@ -20,6 +21,7 @@ parcelRouter.get("/my", protect, authorize("customer"), getMyParcels);
 parcelRouter.get("/track/:trackingNumber", trackParcel);
 
 parcelRouter.get("/", protect, authorize("admin"), getAllParcels);
+parcelRouter.get("/:id", protect, authorize("admin"), getParcelById);
 
 parcelRouter.patch(
   "/:id/assign-driver",
@@ -39,7 +41,7 @@ parcelRouter.patch(
   "/:id/status",
   protect,
   authorize("driver"),
-  updateParcelStatus
+  updateParcelStatus,
 );
 
 export default parcelRouter;

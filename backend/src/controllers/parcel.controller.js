@@ -236,6 +236,32 @@ export const getAllParcels = async (req, res) => {
   }
 };
 
+//get parcel by id
+export const getParcelById = async (req, res) => {
+  try {
+    const parcel = await Parcel.findById(req.params.id)
+      .populate("customer", "name email phone")
+      .populate("driver", "name email phone");
+
+    if (!parcel) {
+      return res.status(404).json({
+        success: false,
+        message: "Parcel not found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      data: parcel,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+};
+
 // Assign driver to parcel
 
 export const assignDriver = async (req, res) => {
